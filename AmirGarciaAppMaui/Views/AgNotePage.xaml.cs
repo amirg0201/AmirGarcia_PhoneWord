@@ -1,4 +1,4 @@
-namespace AmirGarciaAppMaui;
+namespace AmirGarciaAppMaui.Views;
 
 public partial class AgNotePage : ContentPage
 {
