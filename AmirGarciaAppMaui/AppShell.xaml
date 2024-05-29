@@ -7,9 +7,16 @@
     Shell.FlyoutBehavior="Disabled"
     Title="AmirGarciaAppMaui">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <ShellContent
+            Title="Notes"
+            ContentTemplate="{DataTemplate local:AgNotePage}"
+            Icon="{OnPlatform 'agicon_notes.png', iOS='agicon_notes_ios.png', MacCatalyst='agicon_notes_ios.png'}" />
+
+        <ShellContent
+            Title="About"
+            ContentTemplate="{DataTemplate local:AGAboutPage}"
+            Icon="{OnPlatform 'agicon_about.png', iOS='agicon_about_ios.png', MacCatalyst='agicon_about_ios.png'}" />
+    </TabBar>
 
 </Shell>
