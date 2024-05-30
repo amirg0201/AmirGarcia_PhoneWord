@@ -10,7 +10,7 @@
     <TabBar>
         <ShellContent
             Title="Notes"
-            ContentTemplate="{DataTemplate views:AgNotePage}"
+            ContentTemplate="{DataTemplate views:AgAllNotesPage}"
             Icon="{OnPlatform 'agicon_notes.png', iOS='agicon_notes_ios.png', MacCatalyst='agicon_notes_ios.png'}" />
 
         <ShellContent

@@ -9,6 +9,10 @@ public partial class AGAboutPage : ContentPage
 
     private async void AgLearnMore_Clicked(object sender, EventArgs e)
     {
-        await Launcher.Default.OpenAsync("https://aka.ms/maui");
+        if (BindingContext is Models.AgAbout about)
+        {
+            // Navigate to the specified URL in the system browser.
+            await Launcher.Default.OpenAsync(about.MoreInfoUrl);
+        }
     }
 }
