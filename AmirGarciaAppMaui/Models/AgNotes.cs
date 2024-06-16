@@ -8,17 +8,17 @@ namespace AmirGarciaAppMaui.Models
 {
     internal class AgNotes
     {
-        public string Filename { get; set; }
-        public string Text { get; set; }
-        public DateTime Date { get; set; }
+        public string AgFilename { get; set; }
+        public string AgText { get; set; }
+        public DateTime AgDate { get; set; }
 
-        public void Save() =>
-        File.WriteAllText(System.IO.Path.Combine(FileSystem.AppDataDirectory, Filename), Text);
+        public void AgSave() =>
+        File.WriteAllText(System.IO.Path.Combine(FileSystem.AppDataDirectory, AgFilename), AgText);
 
-        public void Delete() =>
-            File.Delete(System.IO.Path.Combine(FileSystem.AppDataDirectory, Filename));
+        public void AgDelete() =>
+            File.Delete(System.IO.Path.Combine(FileSystem.AppDataDirectory, AgFilename));
 
-        public static AgNotes Load(string filename)
+        public static AgNotes AgLoad(string filename)
         {
             filename = System.IO.Path.Combine(FileSystem.AppDataDirectory, filename);
 
@@ -27,9 +27,9 @@ namespace AmirGarciaAppMaui.Models
 
             return new AgNotes()
                  {
-                     Filename = Path.GetFileName(filename),
-                     Text = File.ReadAllText(filename),
-                     Date = File.GetLastWriteTime(filename)
+                     AgFilename = Path.GetFileName(filename),
+                     AgText = File.ReadAllText(filename),
+                     AgDate = File.GetLastWriteTime(filename)
                  };
 
         }
@@ -46,17 +46,17 @@ namespace AmirGarciaAppMaui.Models
                     .EnumerateFiles(appDataPath, "*.notes.txt")
 
                     // Each file name is used to load a note
-                    .Select(filename => AgNotes.Load(Path.GetFileName(filename)))
+                    .Select(filename => AgNotes.AgLoad(Path.GetFileName(filename)))
 
                     // With the final collection of notes, order them by date
-                    .OrderByDescending(note => note.Date);
+                    .OrderByDescending(note => note.AgDate);
         }
 
         public AgNotes()
         {
-            Filename = $"{Path.GetRandomFileName()}.notes.txt";
-            Date = DateTime.Now;
-            Text = "";
+            AgFilename = $"{Path.GetRandomFileName()}.notes.txt";
+            AgDate = DateTime.Now;
+            AgText = "";
         }
 
 

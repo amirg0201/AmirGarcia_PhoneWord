@@ -10,14 +10,14 @@
         <viewModels:NotesViewModel />
     </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Command="{Binding NewCommand}" IconImageSource="{FontImage Glyph='+', Color=Black, Size=22}" />
+        <ToolbarItem Text="Add" Command="{Binding AgNewCommand}" IconImageSource="{FontImage Glyph='+', Color=Black, Size=22}" />
     </ContentPage.ToolbarItems>
 
     <CollectionView x:Name="notesCollection"
-                        ItemsSource="{Binding AllNotes}"
+                        ItemsSource="{Binding AgAllNotes}"
                         Margin="20"
                         SelectionMode="Single"
-                        SelectionChangedCommand="{Binding SelectNoteCommand}"
+                        SelectionChangedCommand="{Binding AgSelectNoteCommand}"
                         SelectionChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=SelectedItem}">
 
         <!-- Designate how the collection of items are laid out -->

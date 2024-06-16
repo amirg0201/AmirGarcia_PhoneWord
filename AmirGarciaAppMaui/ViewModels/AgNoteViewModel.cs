@@ -13,69 +13,69 @@ namespace AmirGarciaAppMaui.ViewModels
 
         public string Text
         {
-            get => _note.Text;
+            get => _note.AgText;
             set
             {
-                if (_note.Text != value)
+                if (_note.AgText != value)
                 {
-                    _note.Text = value;
+                    _note.AgText = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        public DateTime Date => _note.Date;
+        public DateTime AgDate => _note.AgDate;
 
-        public string Identifier => _note.Filename;
-        public ICommand SaveCommand { get; private set; }
-        public ICommand DeleteCommand { get; private set; }
+        public string AgIdentifier => _note.AgFilename;
+        public ICommand AgSaveCommand { get; private set; }
+        public ICommand AgDeleteCommand { get; private set; }
 
         public AgNoteViewModel()
         {
             _note = new Models.AgNotes();
-            SaveCommand = new AsyncRelayCommand(Save);
-            DeleteCommand = new AsyncRelayCommand(Delete);
+            AgSaveCommand = new AsyncRelayCommand(AgSave);
+            AgDeleteCommand = new AsyncRelayCommand(AgDelete);
         }
 
         public AgNoteViewModel(Models.AgNotes note)
         {
             _note = note;
-            SaveCommand = new AsyncRelayCommand(Save);
-            DeleteCommand = new AsyncRelayCommand(Delete);
+            AgSaveCommand = new AsyncRelayCommand(AgSave);
+            AgDeleteCommand = new AsyncRelayCommand(AgDelete);
         }
 
-        private async Task Save()
+        private async Task AgSave()
         {
-            _note.Date = DateTime.Now;
-            _note.Save();
-            await Shell.Current.GoToAsync($"..?saved={_note.Filename}");
+            _note.AgDate = DateTime.Now;
+            _note.AgSave();
+            await Shell.Current.GoToAsync($"..?saved={_note.AgFilename}");
         }
 
-        private async Task Delete()
+        private async Task AgDelete()
         {
-            _note.Delete();
-            await Shell.Current.GoToAsync($"..?deleted={_note.Filename}");
+            _note.AgDelete();
+            await Shell.Current.GoToAsync($"..?deleted={_note.AgFilename}");
         }
 
         void IQueryAttributable.ApplyQueryAttributes(IDictionary<string, object> query)
         {
             if (query.ContainsKey("load"))
             {
-                _note = Models.AgNotes.Load(query["load"].ToString());
-                RefreshProperties();
+                _note = Models.AgNotes.AgLoad(query["load"].ToString());
+                AgRefreshProperties();
             }
         }
 
-        public void Reload()
+        public void AgReload()
         {
-            _note = Models.AgNotes.Load(_note.Filename);
-            RefreshProperties();
+            _note = Models.AgNotes.AgLoad(_note.AgFilename);
+            AgRefreshProperties();
         }
 
-        private void RefreshProperties()
+        private void AgRefreshProperties()
         {
             OnPropertyChanged(nameof(Text));
-            OnPropertyChanged(nameof(Date));
+            OnPropertyChanged(nameof(AgDate));
         }
     }
 }
